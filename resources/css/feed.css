@@ -1,17 +1,24 @@
 .post-content {
     margin: 10px;
-    padding: 10px;
+    padding: 0 0 20px 20px;
     flex-basis: 300px;
     flex-grow: 0;
     flex-shrink: 0;
-    border: 2px solid black;
-    border-radius: 10px;
+    background-color: lightgray;
 }
 
 .post-title {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     text-align: center;
+    background-color: linen;
+    padding: 10px;
+    margin: 0 0 0 50px;
+    border-radius: 0 0 0 50px;
 }
 
 .post-description {
-
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 10px;
+    padding-right: 10px;    
+    text-align: center;
 }
