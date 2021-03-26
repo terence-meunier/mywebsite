@@ -17,6 +17,7 @@
     margin: 0 0 0 50px;
     border-radius: 0 0 0 50px;
     color: black;
+    font-size:1.2em;
 }
 
 .post-description {
@@ -25,4 +26,21 @@
     padding-right: 10px;    
     text-align: left;
     font-size: 0.8em;
+}
+
+.post-footer {
+    padding: 5px;
+    margin: 0 50px 0 0;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.post-footer ul {
+    list-style: none;
+}
+
+.post-footer ul li {
+    padding: 5px 0;
 }
