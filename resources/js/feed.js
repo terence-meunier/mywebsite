@@ -52,4 +52,22 @@ $(function() {
     .always(function() {
         console.log("Requête effectuée");
     });
+
+    // Carousel
+    $('.jcarousel')
+        .jcarousel({
+            animation: {
+                duration: 2500,
+                easing:   'linear',
+                complete: function() {
+                }
+            },
+            wrap: 'circular',
+            center: true,
+        })
+        .jcarouselAutoscroll({
+            interval: 2500,
+            target: '+=1',
+            autostart: true
+        });
 });
