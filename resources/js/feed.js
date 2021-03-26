@@ -18,6 +18,25 @@ $(function() {
             p.setAttribute('class', 'post-description');
             p.textContent = element.description;
             div.appendChild(p);
+
+            // Add footer
+            let footer = document.createElement('div');
+            footer.setAttribute('class', 'post-footer');
+            let ul = document.createElement('ul');
+            // Director
+            let li = document.createElement('li');
+            li.textContent = "Director : " + element.director;
+            ul.appendChild(li);
+            // Producer
+            li = document.createElement('li');
+            li.textContent = "Producer : " + element.producer;
+            ul.appendChild(li);
+            // release date
+            li = document.createElement('li');
+            li.textContent = "Année de sortie : " + element.release_date;
+            ul.appendChild(li);
+            footer.appendChild(ul);
+            div.appendChild(footer);
             
             // Add div in the DOM
             document.querySelector('#main-content').appendChild(div);
