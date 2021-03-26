@@ -1,6 +1,10 @@
 body {
     margin: 0;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-image: url('../img/jpg/paysage.jpg');
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 header {
@@ -14,6 +18,9 @@ header {
 
 footer {
     text-align: center;
+    background-color: black;
+    color: white;
+    padding: 20px;
 }
 
 nav ul {
@@ -39,7 +46,13 @@ nav ul li a:hover {
 }
 
 h1 {
-
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    margin: 0;
+    padding: 20px 0;
 }
 
 h2 {
@@ -53,6 +66,11 @@ h3 {
 
 #logo-site {
     border-radius: 50px;
+}
+
+#caroussel {
+    margin: 0;
+    padding: 0;
 }
 
 #main-content {
