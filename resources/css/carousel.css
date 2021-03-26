@@ -32,3 +32,46 @@ have a fixed width and height (but it's not required).
     /* Required only for block elements like <li>'s */
     float: left;
 }
+
+.jcarousel-pagination {
+    text-align: center;
+}
+
+.jcarousel-pagination a {
+    padding: 0 5px 0 5px;
+}
+
+#caroussel {
+    margin: 0;
+    padding: 0;
+}
+
+#carousel-controls {
+    position: absolute;
+    width: 100%;
+    top: 300px;
+    text-align: center;
+}
+
+#carousel-controls a {
+    padding: 20px;
+    margin: 0 100px;
+}
+
+#carousel-controls a span {
+    color: white;
+    font-size:2em;
+}
+
+.jcarousel-pagination {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 10px;
+}
+
+.jcarousel-pagination a {
+    color: white;
+    margin: 0 10px;
+    padding: 20px;
+}
