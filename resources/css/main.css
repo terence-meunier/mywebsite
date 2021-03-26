@@ -4,6 +4,7 @@ body {
     background-image: url('../img/jpg/paysage.jpg');
     background-position: center;
     background-attachment: fixed;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
