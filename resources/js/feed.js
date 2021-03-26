@@ -1,47 +1,48 @@
-$(function () {
+// Add post function
+function getData(element) {
+
+    // Title
+    let div = document.createElement('div');
+    div.setAttribute('class', 'post-content');
+    let h3 = document.createElement('h3');
+    h3.setAttribute('class', 'post-title');
+    h3.textContent = element.title;
+    div.appendChild(h3);
+
+    // Description
+    let p = document.createElement('p');
+    p.setAttribute('class', 'post-description');
+    p.textContent = element.description;
+    div.appendChild(p);
+
+    // Add footer
+    let footer = document.createElement('div');
+    footer.setAttribute('class', 'post-footer');
+    let ul = document.createElement('ul');
+    // Director
+    let li = document.createElement('li');
+    li.textContent = "Director : " + element.director;
+    ul.appendChild(li);
+    // Producer
+    li = document.createElement('li');
+    li.textContent = "Producer : " + element.producer;
+    ul.appendChild(li);
+    // release date
+    li = document.createElement('li');
+    li.textContent = "Année de sortie : " + element.release_date;
+    ul.appendChild(li);
+    footer.appendChild(ul);
+    div.appendChild(footer);
+
+    // Add div in the DOM
+    document.querySelector('#main-content').appendChild(div);
+}
+
+// Call API
+function callAPI() {
     let ghibliAPI = "https://ghibliapi.herokuapp.com/films/";
     $.getJSON(ghibliAPI)
         .done(function (datas) {
-
-            function getData(element) {
-
-                // Title
-                let div = document.createElement('div');
-                div.setAttribute('class', 'post-content');
-                let h3 = document.createElement('h3');
-                h3.setAttribute('class', 'post-title');
-                h3.textContent = element.title;
-                div.appendChild(h3);
-
-                // Description
-                let p = document.createElement('p');
-                p.setAttribute('class', 'post-description');
-                p.textContent = element.description;
-                div.appendChild(p);
-
-                // Add footer
-                let footer = document.createElement('div');
-                footer.setAttribute('class', 'post-footer');
-                let ul = document.createElement('ul');
-                // Director
-                let li = document.createElement('li');
-                li.textContent = "Director : " + element.director;
-                ul.appendChild(li);
-                // Producer
-                li = document.createElement('li');
-                li.textContent = "Producer : " + element.producer;
-                ul.appendChild(li);
-                // release date
-                li = document.createElement('li');
-                li.textContent = "Année de sortie : " + element.release_date;
-                ul.appendChild(li);
-                footer.appendChild(ul);
-                div.appendChild(footer);
-
-                // Add div in the DOM
-                document.querySelector('#main-content').appendChild(div);
-            }
-
             datas.map(getData);
         })
         .fail(function (error) {
@@ -52,6 +53,11 @@ $(function () {
         .always(function () {
             console.log("Requête effectuée");
         });
+};
+
+// DOM is load
+$(function () {
+    callAPI();
 
     // Carousel
     $('.jcarousel')
@@ -71,6 +77,7 @@ $(function () {
             autostart: true,
         });
 
+    // Navigation carousel
     $('.jcarousel-prev').jcarouselControl({
         target: '-=1',
     });
@@ -79,10 +86,16 @@ $(function () {
         target: '+=1',
     });
 
+    // Pagination carousel
     $('.jcarousel-pagination').jcarouselPagination({
-        item: function(page) {
+        item: function (page) {
             return '<a href="#' + page + '"><img src="resources/img/png/cercle.png"/></a>';
         }
     });
 
+});
+
+$('#reload > button').click(function () {
+    $('.post-content').remove();
+    setTimeout(callAPI, 1000);
 });
