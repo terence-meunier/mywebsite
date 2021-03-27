@@ -39,11 +39,10 @@ function getData(element) {
 }
 
 // Call API
-function callAPI() {
-    let ghibliAPI = "https://ghibliapi.herokuapp.com/films/";
-    $.getJSON(ghibliAPI)
+function callAPI(onSuccess) {
+    $.getJSON("https://ghibliapi.herokuapp.com/films/")
         .done(function (datas) {
-            datas.map(getData);
+            onSuccess(datas)
         })
         .fail(function (error) {
             console.log("La requête s'est terminée en échec.");
@@ -57,7 +56,7 @@ function callAPI() {
 
 // DOM is load
 $(function () {
-    callAPI();
+    callAPI(datas => datas.map(getData));
 
     // Carousel
     $('.jcarousel')
@@ -95,7 +94,8 @@ $(function () {
 
 });
 
-$('#reload > button').click(function () {
-    $('.post-content').remove();
-    setTimeout(callAPI, 1000);
+// AddEventListener click on the reload button
+document.querySelector('#reload').firstElementChild.addEventListener("click", function (){
+    document.querySelectorAll('.post-content').forEach(element => element.remove());
+    setTimeout(callAPI(datas => datas.map(getData)), 1000);
 });
