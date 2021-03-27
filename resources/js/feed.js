@@ -41,7 +41,9 @@ function getData(element) {
 // Call API
 function callAPI(onSuccess) {
     $.getJSON("https://ghibliapi.herokuapp.com/films/")
-        .done(onSuccess)
+        .done(function (datas) {
+            onSuccess(datas)
+        })
         .fail(function (error) {
             console.log("La requête s'est terminée en échec.");
             console.log("Status code: " + error.status);
