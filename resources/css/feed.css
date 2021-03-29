@@ -1,43 +1,36 @@
 .post-content {
     margin: 10px;
-    padding: 0 0 20px 20px;
+    padding: 20px;
     flex-basis: 300px;
     flex-grow: 0;
     flex-shrink: 0;
     background-color: black;
     color: white;
-    border-radius: 0 0 50px 0;
 }
 
 .post-title {
     font-family:'Times New Roman', Times, serif;
     text-align: center;
-    background-color: lightslategray;
     padding: 10px;
-    margin: 0 0 0 50px;
-    border-radius: 0 0 0 50px;
-    color: black;
-    font-size:1.2em;
+    margin: 0 auto;
+    font-size:1.5em;
+    color: white;
 }
 
 .post-description {
-    font-family: Arial, Helvetica, sans-serif;
-    padding-left: 10px;
-    padding-right: 10px;    
+    font-family: Arial, Helvetica, sans-serif;   
     text-align: left;
+    word-spacing: 0.3em;
     font-size: 0.8em;
 }
 
 .post-footer {
-    padding: 5px;
-    margin: 0 50px 0 0;
-    background-color: white;
-    color: black;
-    padding: 5px;
-    border-radius: 10px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .post-footer ul {
+    padding: 0;
     list-style: none;
 }
 
@@ -51,7 +44,6 @@
 }
 
 #reload > button{
-    border-radius: 20px;
     background-color: black;
     color: white;
     font-size: 1.2em;
@@ -59,4 +51,3 @@
     margin: 10px;
     text-align: center;
 }
-
