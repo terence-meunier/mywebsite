@@ -1,3 +1,4 @@
+/* Posts */
 .post-content {
     margin: 10px;
     padding: 20px;
@@ -38,16 +39,39 @@
     padding: 5px 0;
 }
 
+/* Reload Button */
 #reload {
     text-align: right;
     margin-right: 20px;
 }
 
-#reload > button{
+.main-button {
     background-color: black;
     color: white;
     font-size: 1.2em;
     padding: 10px;
     margin: 10px;
     text-align: center;
+}
+
+/* Form for AddPost */
+#addPost {
+    padding: 10px;
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: white;
+    color: black;
+    width: 50%;
+}
+
+#addPost div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px;
+    margin: 5px;
+}
+
+#addPost button {
+    cursor: pointer;
 }
