@@ -1,3 +1,5 @@
+// Fonctions
+
 // Add post function
 function getData(element) {
 
@@ -54,56 +56,20 @@ function callAPI(onSuccess) {
         });
 };
 
-// DOM is load
-$(function () {
-    callAPI(datas => datas.map(getData));
-
-    // Carousel
-    $('.jcarousel')
-        .jcarousel({
-            animation: {
-                duration: 2500,
-                easing: 'linear',
-                complete: function () {
-                }
-            },
-            wrap: 'circular',
-            center: true,
-        })
-        .jcarouselAutoscroll({
-            interval: 2500,
-            target: '+=1',
-            autostart: true,
-        });
-
-    // Navigation carousel
-    $('.jcarousel-prev').jcarouselControl({
-        target: '-=1',
-    });
-
-    $('.jcarousel-next').jcarouselControl({
-        target: '+=1',
-    });
-
-    // Pagination carousel
-    $('.jcarousel-pagination').jcarouselPagination({
-        item: function (page) {
-            return '<a href="#' + page + '"><img src="resources/img/png/cercle.png"/></a>';
-        }
-    });
-
-});
+// Fonction récupérant les posts persistés
+function getLocalPosts() {
+    const posts = JSON.parse(localStorage.getItem("posts"));
+    if (posts != null) {
+        return posts;
+    } else {
+        return [];
+    }
+}
 
 // Function cleanPosts
 function cleanPosts() {
     document.querySelectorAll('.post-content').forEach(element => element.remove());
 }
-
-// AddEventListener click on the reload button
-document.querySelector('#reload').firstElementChild.addEventListener("click", function () {
-    cleanPosts();
-    setTimeout(callAPI(datas => datas.map(getData)), 1000);
-});
 
 // Toggle Form
 function toggleForm() {
@@ -116,17 +82,6 @@ function toggleForm() {
     }
 }
 
-// Dynamic Form
-const AddPostForm = document.querySelector('#addPost');
-AddPostForm.setAttribute('style', 'display: none');
-let isClickedAddFormButton = false;
-document.querySelector('#formAddPost').addEventListener('click', function () {
-    toggleForm();    
-});
-
-// Action on the click on button addPostButton
-document.querySelector('#addPostButton').addEventListener('click', addPost);
-
 // Function addPost
 function addPost() {
     // Création de l'objet
@@ -134,7 +89,7 @@ function addPost() {
 
     // Pattern de validation
     function isValid(element) {
-        const pattern = /^[ ,'a-zA-Z][ ,'a-zA-Z]*$/;
+        const pattern = /^[ ,'.a-zA-Zéèàçù][ ,'.a-zA-Zéèàçù]*$/;
         return pattern.test(element);
     }
 
@@ -176,26 +131,131 @@ function addPost() {
         }
     }
 
-    // Champ
+    // Champ Directeur
+    const directeur = document.querySelector('#postDirecteur');
+    const errorDirecteur = document.querySelector('#errorDirecteur');
+    // Si le champ description est vide
+    if (directeur.validity.valueMissing) {
+        errorDirecteur.textContent = 'Directeur manquant';
+        errorDirecteur.style.color = 'red';
+    } else {
+        // Si le champ description est valide
+        if (isValid(directeur.value.trim())) {
+            errorDirecteur.textContent = '';
+            post.director = directeur.value.trim();
+        } else {
+            errorDirecteur.textContent = 'Les balises HTML sont interdites';
+            errorDirecteur.style.color = 'red';
+        }
+    }
+
+    // Champ Producteur
+    const producteur = document.querySelector('#postProducteur');
+    const errorProducteur = document.querySelector('#errorProducteur');
+    // Si le champ description est vide
+    if (producteur.validity.valueMissing) {
+        errorProducteur.textContent = 'Producteur manquant';
+        errorProducteur.style.color = 'red';
+    } else {
+        // Si le champ description est valide
+        if (isValid(producteur.value.trim())) {
+            errorProducteur.textContent = '';
+            post.producer = producteur.value.trim();
+        } else {
+            errorProducteur.textContent = 'Les balises HTML sont interdites';
+            errorProducteur.style.color = 'red';
+        }
+    }
+    // Champ Année de sortie
 
     // Si l'objet post est valide le stocker en fichier json
-    if(post.hasOwnProperty('title') && post.hasOwnProperty('description')) {
+    if(post.hasOwnProperty('title')
+    && post.hasOwnProperty('description')
+    && post.hasOwnProperty('director')
+    && post.hasOwnProperty('producer')) {
         
         // Persistance des posts
-        // Récupère l'objet localStorage si il existe
+        // Récupère l'objet localStorage
         let posts = JSON.parse(localStorage.getItem("posts"));
-        console.log(=)
+
+        // Si il existe
         if (posts) {
-            posts = [...posts, post];
+            // On ajoute le nouveau post au tableau des données
+            posts.push(post);
+            // On restocke en localStorage
             localStorage.setItem("posts", JSON.stringify(posts));
         } else {
-            localStorage.setItem("posts", JSON.stringify(post));
+            // On créé le tableau de données
+            posts = [];
+            // On ajoute le post courant
+            posts.push(post);
+            // On stocke en localStorage
+            localStorage.setItem("posts", JSON.stringify(posts));
         }
 
         // Nettoie les posts
         cleanPosts();
         // Recharge les posts de l'api et rajoute le post du formulaire
-        callAPI(datas => [...datas, post].map(getData));
+        callAPI(datas => [...datas, ...posts].map(getData));
         toggleForm(); 
     }
 }
+
+// Fonction si le DOM est chargé
+$(function () {
+    // Chargement des posts dans le feed
+    callAPI(datas => [...datas, ...getLocalPosts()].map(getData));
+
+    // Gestion du carousel
+    // Carousel
+    $('.jcarousel')
+        .jcarousel({
+            animation: {
+                duration: 2500,
+                easing: 'linear',
+                complete: function () {
+                }
+            },
+            wrap: 'circular',
+            center: true,
+        })
+        .jcarouselAutoscroll({
+            interval: 2500,
+            target: '+=1',
+            autostart: true,
+        });
+
+    // Navigation carousel
+    $('.jcarousel-prev').jcarouselControl({
+        target: '-=1',
+    });
+
+    $('.jcarousel-next').jcarouselControl({
+        target: '+=1',
+    });
+
+    // Pagination carousel
+    $('.jcarousel-pagination').jcarouselPagination({
+        item: function (page) {
+            return '<a href="#' + page + '"><img src="resources/img/png/cercle.png"/></a>';
+        }
+    });
+
+});
+
+// AddEventListener click on the reload button
+document.querySelector('#reload').firstElementChild.addEventListener("click", function () {
+    cleanPosts();
+    setTimeout(callAPI(datas => [...datas, ...getLocalPosts()].map(getData)), 1000);
+});
+
+// Gestion du formulaire dynamique
+const AddPostForm = document.querySelector('#addPost');
+AddPostForm.setAttribute('style', 'display: none');
+let isClickedAddFormButton = false;
+document.querySelector('#formAddPost').addEventListener('click', function () {
+    toggleForm();    
+});
+
+// Action on the click on button addPostButton
+document.querySelector('#addPostButton').addEventListener('click', addPost);
