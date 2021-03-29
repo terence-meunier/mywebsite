@@ -94,18 +94,19 @@ $(function () {
 
 });
 
-// AddEventListener click on the reload button
-document.querySelector('#reload').firstElementChild.addEventListener("click", function (){
+// Function cleanPosts
+function cleanPosts() {
     document.querySelectorAll('.post-content').forEach(element => element.remove());
+}
+
+// AddEventListener click on the reload button
+document.querySelector('#reload').firstElementChild.addEventListener("click", function () {
+    cleanPosts();
     setTimeout(callAPI(datas => datas.map(getData)), 1000);
 });
 
-// Dynamic Form
-const AddPostForm = document.querySelector('#addPost');
-AddPostForm.setAttribute('style', 'display: none');
-let isClickedAddFormButton = false;
-document.querySelector('#formAddPost').addEventListener('click', function() {
-
+// Toggle Form
+function toggleForm() {
     isClickedAddFormButton = !isClickedAddFormButton;
 
     if (isClickedAddFormButton) {
@@ -113,9 +114,88 @@ document.querySelector('#formAddPost').addEventListener('click', function() {
     } else {
         AddPostForm.setAttribute('style', 'display: none;');
     }
+}
+
+// Dynamic Form
+const AddPostForm = document.querySelector('#addPost');
+AddPostForm.setAttribute('style', 'display: none');
+let isClickedAddFormButton = false;
+document.querySelector('#formAddPost').addEventListener('click', function () {
+    toggleForm();    
 });
+
+// Action on the click on button addPostButton
+document.querySelector('#addPostButton').addEventListener('click', addPost);
 
 // Function addPost
 function addPost() {
-    
+    // Création de l'objet
+    const post = {};
+
+    // Pattern de validation
+    function isValid(element) {
+        const pattern = /^[ ,'a-zA-Z][ ,'a-zA-Z]*$/;
+        return pattern.test(element);
+    }
+
+    // Valider les champs du formulaire
+
+    // Champ titre
+    const title = document.querySelector('#postTitle');
+    const errorTitle = document.querySelector('#errorTitle');
+    // Si le champ titre est vide
+    if (title.validity.valueMissing) {
+        errorTitle.textContent = 'Titre manquant';
+        errorTitle.style.color = 'red';
+    } else {
+        // Si le champ titre est valide
+        if (isValid(title.value.trim())) {
+            errorTitle.textContent = '';
+            post.title = title.value.trim();
+        } else {
+            errorTitle.textContent = 'Les balises HTML sont interdites';
+            errorTitle.style.color = 'red';
+        }
+    }
+
+    // Champ description
+    const description = document.querySelector('#postDescription');
+    const errorDescription = document.querySelector('#errorDescription');
+    // Si le champ description est vide
+    if (description.validity.valueMissing) {
+        errorDescription.textContent = 'Description manquante';
+        errorDescription.style.color = 'red';
+    } else {
+        // Si le champ description est valide
+        if (isValid(description.value.trim())) {
+            errorDescription.textContent = '';
+            post.description = description.value.trim();
+        } else {
+            errorDescription.textContent = 'Les balises HTML sont interdites';
+            errorDescription.style.color = 'red';
+        }
+    }
+
+    // Champ
+
+    // Si l'objet post est valide le stocker en fichier json
+    if(post.hasOwnProperty('title') && post.hasOwnProperty('description')) {
+        
+        // Persistance des posts
+        // Récupère l'objet localStorage si il existe
+        let posts = JSON.parse(localStorage.getItem("posts"));
+        console.log(=)
+        if (posts) {
+            posts = [...posts, post];
+            localStorage.setItem("posts", JSON.stringify(posts));
+        } else {
+            localStorage.setItem("posts", JSON.stringify(post));
+        }
+
+        // Nettoie les posts
+        cleanPosts();
+        // Recharge les posts de l'api et rajoute le post du formulaire
+        callAPI(datas => [...datas, post].map(getData));
+        toggleForm(); 
+    }
 }
