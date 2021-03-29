@@ -57,25 +57,27 @@
     <button id="formAddPost" class="main-button">Ajouter un formulaire</button>
 
     <div id="addPost">
+        <div id="errorTitle"></div>
         <div id="Title">
             <label for="postTitle">Titre du film</label>
-            <input id="postTitle" size="50" placeholder="Le titre du film ici..." />
+            <input id="postTitle" size="50" placeholder="Le titre du film ici..." required/>
         </div>
+        <div id="errorDescription"></div>
         <div id="Description">
             <label for="postDescription">Description du film</label>
-            <textarea id="postDescription" cols="70" rows="10" placeholder="Description..."></textarea>
+            <textarea id="postDescription" cols="70" rows="10" placeholder="Description..." required></textarea>
         </div>
         <div id="Directeur">
             <label for="postDirecteur">Directeur du film</label>
-            <input id="postDirecteur" size="50" placeholder="Directeur du film ici..." />
+            <input id="postDirecteur" size="50" placeholder="Directeur du film ici..." required/>
         </div>
         <div id="Producteur">
             <label for="postProducteur">Producteur du film</label>
-            <input id="postProducteur" size="50" placeholder="Producteur du film ici..." />
+            <input id="postProducteur" size="50" placeholder="Producteur du film ici..." required/>
         </div>
         <div id="AnneeDeSortie">
             <label for="postAnneeDeSortie">Année de la sortie</label>
-            <input id="postAnneeDeSortie" size="50" placeholder="Année de sortie du film ici..." />
+            <input id="postAnneeDeSortie" size="50" placeholder="Année de sortie du film ici..." required/>
         </div>
         <div id="submitButton">
             <button id="addPostButton" class="main-button">Ajouter un film</button>
