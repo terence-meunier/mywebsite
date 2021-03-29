@@ -40,8 +40,8 @@
 
         <!-- Controls -->
         <div id="carousel-controls">
-            <a class="jcarousel-prev" href="#"><img src="resources/img/png/prev.png"/></a>
-            <a class="jcarousel-next" href="#"><img src="resources/img/png/next.png"/></a>
+            <a class="jcarousel-prev" href="#"><img src="resources/img/png/prev.png" /></a>
+            <a class="jcarousel-next" href="#"><img src="resources/img/png/next.png" /></a>
         </div>
 
         <!-- Pagination -->
@@ -53,9 +53,37 @@
     </div>
 
     <h1>Les films du studio ghibli</h1>
-    
+
+    <button id="formAddPost" class="main-button">Ajouter un formulaire</button>
+
+    <div id="addPost">
+        <div id="Title">
+            <label for="postTitle">Titre du film</label>
+            <input id="postTitle" size="50" placeholder="Le titre du film ici..." />
+        </div>
+        <div id="Description">
+            <label for="postDescription">Description du film</label>
+            <textarea id="postDescription" cols="70" rows="10" placeholder="Description..."></textarea>
+        </div>
+        <div id="Directeur">
+            <label for="postDirecteur">Directeur du film</label>
+            <input id="postDirecteur" size="50" placeholder="Directeur du film ici..." />
+        </div>
+        <div id="Producteur">
+            <label for="postProducteur">Producteur du film</label>
+            <input id="postProducteur" size="50" placeholder="Producteur du film ici..." />
+        </div>
+        <div id="AnneeDeSortie">
+            <label for="postAnneeDeSortie">Année de la sortie</label>
+            <input id="postAnneeDeSortie" size="50" placeholder="Année de sortie du film ici..." />
+        </div>
+        <div id="submitButton">
+            <button id="addPostButton" class="main-button">Ajouter un film</button>
+        </div>
+    </div>
+
     <div id="reload">
-        <button>Recharger le contenu</button>
+        <button class="main-button">Recharger le contenu</button>
     </div>
 
     <section id="main-content">

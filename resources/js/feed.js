@@ -99,3 +99,23 @@ document.querySelector('#reload').firstElementChild.addEventListener("click", fu
     document.querySelectorAll('.post-content').forEach(element => element.remove());
     setTimeout(callAPI(datas => datas.map(getData)), 1000);
 });
+
+// Dynamic Form
+const AddPostForm = document.querySelector('#addPost');
+AddPostForm.setAttribute('style', 'display: none');
+let isClickedAddFormButton = false;
+document.querySelector('#formAddPost').addEventListener('click', function() {
+
+    isClickedAddFormButton = !isClickedAddFormButton;
+
+    if (isClickedAddFormButton) {
+        AddPostForm.setAttribute('style', 'display: block;');
+    } else {
+        AddPostForm.setAttribute('style', 'display: none;');
+    }
+});
+
+// Function addPost
+function addPost() {
+    
+}
