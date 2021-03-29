@@ -52,6 +52,7 @@
     padding: 10px;
     margin: 10px;
     text-align: center;
+    cursor: pointer;
 }
 
 /* Form for AddPost */
@@ -70,8 +71,4 @@
     align-items: center;
     padding: 5px;
     margin: 5px;
-}
-
-#addPost button {
-    cursor: pointer;
 }
