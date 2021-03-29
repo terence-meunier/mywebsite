@@ -21,15 +21,15 @@ function getData(element) {
     let ul = document.createElement('ul');
     // Director
     let li = document.createElement('li');
-    li.textContent = "Director : " + element.director;
+    li.textContent = "Director | " + element.director;
     ul.appendChild(li);
     // Producer
     li = document.createElement('li');
-    li.textContent = "Producer : " + element.producer;
+    li.textContent = "Producer | " + element.producer;
     ul.appendChild(li);
     // release date
     li = document.createElement('li');
-    li.textContent = "Année de sortie : " + element.release_date;
+    li.textContent = "Année de sortie | " + element.release_date;
     ul.appendChild(li);
     footer.appendChild(ul);
     div.appendChild(footer);
