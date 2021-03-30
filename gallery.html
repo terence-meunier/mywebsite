@@ -55,8 +55,18 @@
     <h1>Gallerie photos</h1>
 
     <div id="displayGallery">
-        <button id="tidyButton" class="main-button">Tidy-up</button>
-        <button id="inLineButton" class="main-button">In-Line</button>
+        <div>
+            <button id="tidyButton" class="main-button"><img src="resources/img/png/tidy-up.png" /></button>
+            <button id="inLineButton" class="main-button"><img src="resources/img/png/in-line.png"></button>
+        </div>
+        <div>
+            <button id="addImgForm" class="main-button">+</button>
+            <div id="formAddPicture">
+                <label for="urlImg">Url de l'image : </label>
+                <input id="urlImg" type="text" placeholder="Tapez l'url de l'image ici..." size="80"/>
+                <button id="addImgButton" class="main-button">Ajouter une image</button>
+            </div>
+        </div>
     </div>
 
     <section id="main-content">
