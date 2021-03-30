@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/main.css">
+    <link rel="stylesheet" href="resources/css/gallery.css">
     <link rel="stylesheet" href="resources/css/carousel.css">
     <title>My Studio Ghibli site - Game</title>
 </head>
@@ -53,8 +54,32 @@
 
     <h1>Gallerie photos</h1>
 
-    <section id="main-content">
+    <div id="displayGallery">
+        <button id="tidyButton" class="main-button">Tidy-up</button>
+        <button id="inLineButton" class="main-button">In-Line</button>
+    </div>
 
+    <section id="main-content">
+        <div id="gallery" class="tidy">
+            <div class="img-thumbnail">
+                <img src="resources/img/jpg/gallery/gallery-1.jpg" />
+            </div>
+            <div class="img-thumbnail">
+                <img src="resources/img/jpg/gallery/gallery-2.jpg" />
+            </div>
+            <div class="img-thumbnail">
+                <img src="resources/img/jpg/gallery/gallery-3.jpg" />
+            </div>
+            <div class="img-thumbnail">
+                <img src="resources/img/jpg/gallery/gallery-4.jpg" />
+            </div>
+            <div class="img-thumbnail">
+                <img src="resources/img/jpg/gallery/gallery-5.jpg" />
+            </div>
+            <div class="img-thumbnail">
+                <img src="resources/img/jpg/gallery/gallery-6.jpg" />
+            </div>
+        </div>
     </section>
 
     <footer id="footer-site">
@@ -64,6 +89,7 @@
     <script src="resources/js/jquery.jcarousel.min.js"></script>
     <script src="resources/js/carousel.js"></script>
     <script src="resources/js/main.js"></script>
+    <script src="resources/js/gallery.js"></script>
 </body>
 
 </html>
