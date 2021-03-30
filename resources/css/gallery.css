@@ -16,10 +16,20 @@
 
 #displayGallery {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 #displayGallery button {
     margin-left: 20px;
     margin-right: 20px;
+}
+
+#formAddPicture {
+    position: relative;
+    min-width: 650px;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    text-align: left;
+    margin-right: 10px;
 }
