@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/main.css">
-    <link rel="stylesheet" href="resources/css/feed.css">
-    <title>My website - Game</title>
+    <link rel="stylesheet" href="resources/css/carousel.css">
+    <title>My Studio Ghibli site - Game</title>
 </head>
 
 <body>
@@ -28,13 +28,41 @@
         </nav>
     </header>
 
+    <div class="jcarousel">
+
+        <!-- Carousel -->
+        <ul>
+            <li><img src="resources/img/jpg/chateau-ambulant.jpg" /></li>
+            <li><img src="resources/img/jpg/ghibli-museum.jpg" /></li>
+            <li><img src="resources/img/jpg/paysage.jpg" /></li>
+        </ul>
+
+        <!-- Controls -->
+        <div id="carousel-controls">
+            <a class="jcarousel-prev" href="#"><img src="resources/img/png/prev.png" /></a>
+            <a class="jcarousel-next" href="#"><img src="resources/img/png/next.png" /></a>
+        </div>
+
+        <!-- Pagination -->
+        <!-- Pagination -->
+        <div class="jcarousel-pagination">
+            <!-- Pagination items will be generated in here -->
+        </div>
+
+    </div>
+
+    <h1>Gallerie photos</h1>
+
     <section id="main-content">
 
     </section>
 
     <footer id="footer-site">
-
+        <p>Copyright Campus Numérique in the Alps @2021-2022</p>
     </footer>
+    <script src="resources/js/jquery.js"></script>
+    <script src="resources/js/jquery.jcarousel.min.js"></script>
+    <script src="resources/js/carousel.js"></script>
     <script src="resources/js/main.js"></script>
 </body>
 
