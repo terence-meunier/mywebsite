@@ -47,6 +47,7 @@
 
 /* Form for AddPost */
 #addPost {
+    position: absolute;
     padding: 10px;
     margin-left: 20px;
     margin-top: 10px;
