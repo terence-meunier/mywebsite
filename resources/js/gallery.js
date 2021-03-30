@@ -45,4 +45,5 @@ document.querySelector('#addImgButton').addEventListener('click', function() {
     div.appendChild(img);
     // Ajout dans le noeud gallery
     document.querySelector('#gallery').appendChild(div);
+    toggleFormImg();
 });
