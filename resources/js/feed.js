@@ -87,9 +87,15 @@ function addPost() {
     // Création de l'objet
     const post = {};
 
-    // Pattern de validation
+    // Pattern de validation pour les champs de textes
     function isValid(element) {
         const pattern = /^[ ,'.a-zA-Zéèàçù][ ,'.a-zA-Zéèàçù]*$/;
+        return pattern.test(element);
+    }
+
+    // Pattern de validation pour les champs numériques
+    function isValidNumber(element) {
+        const pattern = /^[0-9]{4}$/;
         return pattern.test(element);
     }
 
@@ -166,13 +172,31 @@ function addPost() {
             errorProducteur.style.color = 'red';
         }
     }
+    
     // Champ Année de sortie
+    const anneeSortie = document.querySelector('#postAnneeDeSortie');
+    const errorAnneeSortie = document.querySelector('#errorAnnee');
+    // Si le champ description est vide
+    if (anneeSortie.validity.valueMissing) {
+        errorAnneeSortie.textContent = 'Année de sortie manquante';
+        errorAnneeSortie.style.color = 'red';
+    } else {
+        // Si le champ description est valide
+        if (isValidNumber(anneeSortie.value.trim())) {
+            errorAnneeSortie.textContent = '';
+            post.release_date = anneeSortie.value.trim();
+        } else {
+            errorAnneeSortie.textContent = 'Ce champ doit être un chiffre à 4 digits';
+            errorAnneeSortie.style.color = 'red';
+        }
+    }
 
     // Si l'objet post est valide le stocker en fichier json
     if(post.hasOwnProperty('title')
     && post.hasOwnProperty('description')
     && post.hasOwnProperty('director')
-    && post.hasOwnProperty('producer')) {
+    && post.hasOwnProperty('producer')
+    && post.hasOwnProperty('release_date')) {
         
         // Persistance des posts
         // Récupère l'objet localStorage
