@@ -18,11 +18,14 @@ let addFormImgIsVisible = false;
 
 // Toggle function for form visibility
 function toggleFormImg() {
+    const addImgForm = document.querySelector('#addImgForm');
     const formAddPicture = document.querySelector('#formAddPicture');
     if (addFormImgIsVisible) {
         formAddPicture.setAttribute('style', 'display: none');
+        addImgForm.textContent = "+";
     } else {
         formAddPicture.setAttribute('style', 'display: block');
+        addImgForm.textContent = "X";
     }
 
     // Inversion de visibilité
