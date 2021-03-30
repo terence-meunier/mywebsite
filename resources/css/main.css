@@ -93,3 +93,13 @@ h3 {
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.main-button {
+    background-color: black;
+    color: white;
+    font-size: 1.2em;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+}

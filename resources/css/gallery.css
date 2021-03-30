@@ -1,7 +1,25 @@
-.img-thumbnail {
-
+.tidy {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.img-label {
-    
+.inline {
+    flex-direction: column;
+    text-align: center;
+}
+
+.img-thumbnail {
+    margin: 20px;
+}
+
+#displayGallery {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#displayGallery button {
+    margin-left: 20px;
+    margin-right: 20px;
 }
