@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/main.css">
-    <link rel="stylesheet" href="resources/css/feed.css">
+    <link rel="stylesheet" href="resources/css/game.css">
     <title>My website - Gallery</title>
 </head>
 
@@ -28,14 +28,29 @@
         </nav>
     </header>
 
-    <section id="main-content">
+    <h1>Faites votre choix :</h1>
 
+    <section id="main-content">
+        <div id="playerChoice">
+            <img src="resources/img/jpg/players/pierre.jpg" alt="pierre" width="200" />
+            <img src="resources/img/jpg/players/papier.jpg" alt="papier" width="200" />
+            <img src="resources/img/jpg/players/ciseaux.jpg" alt="ciseaux" width="200" />
+        </div>
+    </section>
+
+    <section>
+        <div id="computerChoice"></div>
+    </section>
+
+    <section>
+        <div id="result"></div>
     </section>
 
     <footer id="footer-site">
 
     </footer>
     <script src="resources/js/main.js"></script>
+    <script src="resources/js/game.js"></script>
 </body>
 
 </html>
