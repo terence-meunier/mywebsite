@@ -1,19 +1,23 @@
-.img-choice {
-
+#result {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
 }
 
-#userChoice {
+#playerChoice {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 
+#playerChoice img {
+    margin: 20px;
 }
 
 #computerChoice {
-
+    text-align: center;
 }
 
-#result {
-
-}
-
-.button {
-
+#computerChoice h2 {
+    background-color: white;
 }
