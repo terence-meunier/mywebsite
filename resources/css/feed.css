@@ -54,6 +54,7 @@
     background-color: white;
     color: black;
     width: 50%;
+    z-index: 1;
 }
 
 #addPost div {
@@ -62,4 +63,9 @@
     align-items: center;
     padding: 5px;
     margin: 5px;
+}
+
+.delete-post {
+    position: relative;
+    float: right;
 }
