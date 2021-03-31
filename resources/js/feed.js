@@ -3,24 +3,35 @@
 // Add post function
 function getData(element) {
 
-    // Title
-    let div = document.createElement('div');
+    // Div post content
+    const div = document.createElement('div');
     div.setAttribute('class', 'post-content');
-    let h3 = document.createElement('h3');
+    
+    // Add delete button
+    const divDelete = document.createElement('div');
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = "X";
+    deleteButton.className = "main-button";
+    divDelete.className = "delete-post";
+    divDelete.appendChild(deleteButton);
+    div.appendChild(divDelete);
+
+    // Title
+    const h3 = document.createElement('h3');
     h3.setAttribute('class', 'post-title');
     h3.textContent = element.title;
     div.appendChild(h3);
 
     // Description
-    let p = document.createElement('p');
+    const p = document.createElement('p');
     p.setAttribute('class', 'post-description');
     p.textContent = element.description;
     div.appendChild(p);
 
     // Add footer
-    let footer = document.createElement('div');
+    const footer = document.createElement('div');
     footer.setAttribute('class', 'post-footer');
-    let ul = document.createElement('ul');
+    const ul = document.createElement('ul');
     // Director
     let li = document.createElement('li');
     li.textContent = "Director | " + element.director;
@@ -44,7 +55,15 @@ function getData(element) {
 function callAPI(onSuccess) {
     $.getJSON("https://ghibliapi.herokuapp.com/films/")
         .done(function (datas) {
-            onSuccess(datas)
+            onSuccess(datas);
+            
+            // Delete action on the click button
+            document.querySelectorAll('.delete-post').forEach(function (element) {
+                element.querySelector('button').addEventListener('click', function() {
+                    //this.parentElement.parentElement.remove();
+                    deletePost(this.parentElement.parentElement);
+                });
+            });
         })
         .fail(function (error) {
             console.log("La requête s'est terminée en échec.");
@@ -223,6 +242,25 @@ function addPost() {
         callAPI(datas => [...datas, ...posts].map(getData));
         toggleForm(); 
     }
+}
+
+// Function deletePost
+function deletePost(element) {
+    // Récupérer le tableau de localStorage
+    let posts = JSON.parse(localStorage.getItem('posts'));
+    posts.forEach(function(item, index) {
+        // Check dans le tableau si l'élément existe
+        if (item.title == element.firstChild.nextSibling.textContent) {
+            // Le supprimer du tableau
+            posts.splice(index, 1);
+        }
+    });
+
+    // Supprimer l'élement du DOM
+    element.remove();
+
+    // recharger le tableau dans le localStorage
+    localStorage.setItem('posts', JSON.stringify(posts));
 }
 
 // Fonction si le DOM est chargé
