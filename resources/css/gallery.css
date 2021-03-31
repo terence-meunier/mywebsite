@@ -34,3 +34,7 @@
     margin-right: 10px;
     z-index: 1;
 }
+
+.delete-img {
+    position: absolute;
+}
