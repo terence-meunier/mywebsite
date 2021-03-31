@@ -6,7 +6,7 @@ function getData(element) {
     // Div post content
     const div = document.createElement('div');
     div.setAttribute('class', 'post-content');
-    
+
     // Add delete button
     const divDelete = document.createElement('div');
     const deleteButton = document.createElement('button');
@@ -56,10 +56,10 @@ function callAPI(onSuccess) {
     $.getJSON("https://ghibliapi.herokuapp.com/films/")
         .done(function (datas) {
             onSuccess(datas);
-            
+
             // Delete action on the click button
             document.querySelectorAll('.delete-post').forEach(function (element) {
-                element.querySelector('button').addEventListener('click', function() {
+                element.querySelector('button').addEventListener('click', function () {
                     //this.parentElement.parentElement.remove();
                     deletePost(this.parentElement.parentElement);
                 });
@@ -191,7 +191,7 @@ function addPost() {
             errorProducteur.style.color = 'red';
         }
     }
-    
+
     // Champ Année de sortie
     const anneeSortie = document.querySelector('#postAnneeDeSortie');
     const errorAnneeSortie = document.querySelector('#errorAnnee');
@@ -211,12 +211,12 @@ function addPost() {
     }
 
     // Si l'objet post est valide le stocker en fichier json
-    if(post.hasOwnProperty('title')
-    && post.hasOwnProperty('description')
-    && post.hasOwnProperty('director')
-    && post.hasOwnProperty('producer')
-    && post.hasOwnProperty('release_date')) {
-        
+    if (post.hasOwnProperty('title')
+        && post.hasOwnProperty('description')
+        && post.hasOwnProperty('director')
+        && post.hasOwnProperty('producer')
+        && post.hasOwnProperty('release_date')) {
+
         // Persistance des posts
         // Récupère l'objet localStorage
         let posts = JSON.parse(localStorage.getItem("posts"));
@@ -240,7 +240,7 @@ function addPost() {
         cleanPosts();
         // Recharge les posts de l'api et rajoute le post du formulaire
         callAPI(datas => [...datas, ...posts].map(getData));
-        toggleForm(); 
+        toggleForm();
     }
 }
 
@@ -248,14 +248,18 @@ function addPost() {
 function deletePost(element) {
     // Récupérer le tableau de localStorage
     let posts = JSON.parse(localStorage.getItem('posts'));
-    posts.forEach(function(item, index) {
-        // Check dans le tableau si l'élément existe
-        if (item.title == element.firstChild.nextSibling.textContent) {
-            // Le supprimer du tableau
-            posts.splice(index, 1);
-        }
-    });
 
+    // Si posts est différent de null (si il existe dans le localStorage)
+    if (posts != null) {
+
+        posts.forEach(function (item, index) {
+            // Check dans le tableau si l'élément existe
+            if (item.title == element.firstChild.nextSibling.textContent) {
+                // Le supprimer du tableau
+                posts.splice(index, 1);
+            }
+        });
+    }
     // Supprimer l'élement du DOM
     element.remove();
 
@@ -316,7 +320,7 @@ const AddPostForm = document.querySelector('#addPost');
 AddPostForm.setAttribute('style', 'display: none');
 let isClickedAddFormButton = false;
 document.querySelector('#formAddPost').addEventListener('click', function () {
-    toggleForm();    
+    toggleForm();
 });
 
 // Action on the click on button addPostButton
