@@ -1,4 +1,3 @@
-
 // Get Computer Choice
 function getComputerChoice() {
     let choice = ['pierre', 'papier', 'ciseaux'];
@@ -9,55 +8,62 @@ function getComputerChoice() {
 // findWinner Function
 function findWinner(playerChoice, computerChoice) {
     if (playerChoice == computerChoice) {
-        return "Tied";
+        return "Egalité, mange du paté";
     } else if (playerChoice == 'pierre') {
         if (computerChoice == 'ciseaux') {
-            return 'Won';
+            return 'Bravo, mon gros Totoro';
         } else {
-            return 'Lost';
+            return 'Tu as perdu, tu n\'es pas digne de princesse mononoké';
         }
     } else if (playerChoice == 'papier') {
         if (computerChoice == 'pierre') {
-            return 'Won';
+            return 'Bravo, mon gros Totoro';
         } else {
             return 'Lost';
         }
     } else if (playerChoice == 'ciseaux') {
         if (computerChoice == 'papier') {
-            return 'Won';
+            return 'Bravo, mon gros Totoro';
         } else {
             return 'Lost';
         }
     } else if (playerChoice == 'bomb') {
-        return 'Won';
+        return 'Bravo, mon gros Totoroon';
     }
 }
 
 // Function playGame
-function playGame(playerChoice, img) {
-    // Computer Choice
+function playGame(playerChoice) {
+    // Get Computer Choice
+    const computerChoice = getComputerChoice();
+    
+    // get computerChoice div
     const result = document.querySelector('#computerChoice');
+    
+    // Create div element to insert into computerChoice div
     const div = document.createElement('div');
-    const computerChoice = document.createElement('img');
-    computerChoice.src = img;
-    computerChoice.alt = playerChoice;
-    computerChoice.width = 200;
+    const divComputerChoice = document.createElement('img');
+    divComputerChoice.src = 'resources/img/jpg/players/' + computerChoice + '.jpg';
+    divComputerChoice.alt = playerChoice;
+    divComputerChoice.width = 200;
     const p = document.createElement('h2');
     p.textContent = "Computer Choice";
     div.appendChild(p);
-    div.appendChild(computerChoice);
+    div.appendChild(divComputerChoice);
+
+    // Insertion of the create Element into the div computerChoice
     result.appendChild(div);
     
-    // Result
-    document.querySelector('#result').textContent = findWinner(playerChoice, getComputerChoice());
+    // Show Result
+    document.querySelector('#result').textContent = findWinner(playerChoice, computerChoice);
 }
 
-// Launch the game
+// Launch the game on a player choice
 document.querySelectorAll('#playerChoice img').forEach(function (element) {
     element.addEventListener('click', function() {
         if (document.querySelector('#computerChoice').firstChild != null) {
             document.querySelector('#computerChoice').firstChild.remove();
         }
-        playGame(element.alt, element.src);
+        playGame(element.alt);
     });
 });
