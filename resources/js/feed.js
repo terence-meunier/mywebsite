@@ -154,11 +154,10 @@ function addPost() {
     // Valider les champs du formulaire
     // Champ titre
     addPostElement('title', 'text');
-    //addPostElement('description', 'text');
-    //addPostElement('directeur', 'text');
-    //addPostElement('producer', 'text');
-    //addPostElement('release_date', 'number');
-    
+    addPostElement('description', 'text');
+    addPostElement('director', 'text');
+    addPostElement('producer', 'text');
+    addPostElement('release_date', 'number');
 
     // Si l'objet post est valide le stocker en fichier json
     if (post.hasOwnProperty('title')
