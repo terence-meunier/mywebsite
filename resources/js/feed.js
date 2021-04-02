@@ -103,6 +103,39 @@ function toggleForm() {
 
 // Function addPost
 function addPost() {
+
+    // Function addPostElement
+    function addPostElement(elementName, type) {
+        // Champ element
+        const elt = document.querySelector('#post' + elementName.charAt(0).toUpperCase() + elementName.slice(1, elementName.length));
+        const err = document.querySelector('#error' + elementName.charAt(0).toUpperCase() + elementName.slice(1, elementName.length));
+        // Si le champ element est vide
+        if (elt.validity.valueMissing) {
+            err.textContent = 'Titre manquant';
+            err.style.color = 'red';
+        } else {
+            // Si le champ element est un texte
+            if (type == 'text') {
+                if (isValid(elt.value.trim())) {
+                    err.textContent = '';
+                    post[elementName] = elt.value.trim();
+                } else {
+                    err.textContent = 'Les balises HTML sont interdites';
+                    err.style.color = 'red';
+                }
+            } else if (type == 'number') {
+                // Si le champ description est valide
+                if (isValidNumber(elt.value.trim())) {
+                    err.textContent = '';
+                    post[elementName] = elt.value.trim();
+                } else {
+                    err.textContent = 'Ce champ doit être un chiffre à 4 digits';
+                    err.style.color = 'red';
+                }
+            }
+        }
+    }
+
     // Création de l'objet
     const post = {};
 
@@ -119,96 +152,13 @@ function addPost() {
     }
 
     // Valider les champs du formulaire
-
     // Champ titre
-    const title = document.querySelector('#postTitle');
-    const errorTitle = document.querySelector('#errorTitle');
-    // Si le champ titre est vide
-    if (title.validity.valueMissing) {
-        errorTitle.textContent = 'Titre manquant';
-        errorTitle.style.color = 'red';
-    } else {
-        // Si le champ titre est valide
-        if (isValid(title.value.trim())) {
-            errorTitle.textContent = '';
-            post.title = title.value.trim();
-        } else {
-            errorTitle.textContent = 'Les balises HTML sont interdites';
-            errorTitle.style.color = 'red';
-        }
-    }
-
-    // Champ description
-    const description = document.querySelector('#postDescription');
-    const errorDescription = document.querySelector('#errorDescription');
-    // Si le champ description est vide
-    if (description.validity.valueMissing) {
-        errorDescription.textContent = 'Description manquante';
-        errorDescription.style.color = 'red';
-    } else {
-        // Si le champ description est valide
-        if (isValid(description.value.trim())) {
-            errorDescription.textContent = '';
-            post.description = description.value.trim();
-        } else {
-            errorDescription.textContent = 'Les balises HTML sont interdites';
-            errorDescription.style.color = 'red';
-        }
-    }
-
-    // Champ Directeur
-    const directeur = document.querySelector('#postDirecteur');
-    const errorDirecteur = document.querySelector('#errorDirecteur');
-    // Si le champ description est vide
-    if (directeur.validity.valueMissing) {
-        errorDirecteur.textContent = 'Directeur manquant';
-        errorDirecteur.style.color = 'red';
-    } else {
-        // Si le champ description est valide
-        if (isValid(directeur.value.trim())) {
-            errorDirecteur.textContent = '';
-            post.director = directeur.value.trim();
-        } else {
-            errorDirecteur.textContent = 'Les balises HTML sont interdites';
-            errorDirecteur.style.color = 'red';
-        }
-    }
-
-    // Champ Producteur
-    const producteur = document.querySelector('#postProducteur');
-    const errorProducteur = document.querySelector('#errorProducteur');
-    // Si le champ description est vide
-    if (producteur.validity.valueMissing) {
-        errorProducteur.textContent = 'Producteur manquant';
-        errorProducteur.style.color = 'red';
-    } else {
-        // Si le champ description est valide
-        if (isValid(producteur.value.trim())) {
-            errorProducteur.textContent = '';
-            post.producer = producteur.value.trim();
-        } else {
-            errorProducteur.textContent = 'Les balises HTML sont interdites';
-            errorProducteur.style.color = 'red';
-        }
-    }
-
-    // Champ Année de sortie
-    const anneeSortie = document.querySelector('#postAnneeDeSortie');
-    const errorAnneeSortie = document.querySelector('#errorAnnee');
-    // Si le champ description est vide
-    if (anneeSortie.validity.valueMissing) {
-        errorAnneeSortie.textContent = 'Année de sortie manquante';
-        errorAnneeSortie.style.color = 'red';
-    } else {
-        // Si le champ description est valide
-        if (isValidNumber(anneeSortie.value.trim())) {
-            errorAnneeSortie.textContent = '';
-            post.release_date = anneeSortie.value.trim();
-        } else {
-            errorAnneeSortie.textContent = 'Ce champ doit être un chiffre à 4 digits';
-            errorAnneeSortie.style.color = 'red';
-        }
-    }
+    addPostElement('title', 'text');
+    //addPostElement('description', 'text');
+    //addPostElement('directeur', 'text');
+    //addPostElement('producer', 'text');
+    //addPostElement('release_date', 'number');
+    
 
     // Si l'objet post est valide le stocker en fichier json
     if (post.hasOwnProperty('title')
