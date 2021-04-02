@@ -19,13 +19,13 @@ function findWinner(playerChoice, computerChoice) {
         if (computerChoice == 'pierre') {
             return 'Bravo, mon gros Totoro';
         } else {
-            return 'Lost';
+            return 'Tu as perdu, tu n\'es pas digne de princesse mononoké';
         }
     } else if (playerChoice == 'ciseaux') {
         if (computerChoice == 'papier') {
             return 'Bravo, mon gros Totoro';
         } else {
-            return 'Lost';
+            return 'Tu as perdu, tu n\'es pas digne de princesse mononoké';
         }
     } else if (playerChoice == 'bomb') {
         return 'Bravo, mon gros Totoroon';
